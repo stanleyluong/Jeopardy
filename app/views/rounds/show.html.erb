@@ -1,0 +1,49 @@
+<h1>Jeopardy! </h1>
+<h2><%= @round.name %></h2>
+<% @categories.each do |category| %>
+    <%= category.title %><br>
+    <% category.clues.each do |clue|%>
+        <% if @round.id == 3 %>
+        <%= link_to "Clue", clue_path(clue), method: :get%>
+        <% else %>
+            <% if clue.has_been_answered == false %>
+                <%= link_to clue.value, clue_path(clue), method: :get%>
+            <% else %>
+                xxx
+            <% end %>
+        <% end %>
+    <% end %><br>
+<% end %>
+
+<% if @round.id == 1 %>
+    <p><%= link_to "Next Round: Double Jeopardy!", round_path(2) %></p>
+<% elsif @round.id == 2 %>
+    <p><%= link_to "Next Round: Final Jeopardy!!", round_path(3) %></p>
+<% end %>
+
+<html>
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+<table>
+  <tr>
+  	<th> Teams </th>
+    <th>Team 1</th>
+    <th>Team 2</th>
+    <th>Team 3</th>
+  </tr>
+  <tr>
+    <td>Winnings</td>
+    <td><button type="button" ><%= @host.teams[0].winnings %></button></td>
+    <td><button type="button" ><%= @host.teams[1].winnings %></button></td>
+    <td><button type="button" ><%= @host.teams[2].winnings %></button></td>
+  </tr>
+</table>
+
+</body>
+</html>

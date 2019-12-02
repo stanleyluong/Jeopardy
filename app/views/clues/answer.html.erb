@@ -1,0 +1,57 @@
+<h1><%=@clue.answer%></h1>
+<% @clue.has_been_answered = true %>
+<% @clue.save %>
+<table>
+  <tr>
+  	<th> Teams </th>
+    <th>Team 1</th>
+    <th>Team 2</th>
+    <th>Team 3</th>
+  </tr>
+  <tr>
+    <td>Winnings</td>
+    <td><%=@host.teams[0].winnings%></td>
+    <td><%=@host.teams[1].winnings%></td>
+    <td><%=@host.teams[2].winnings%></td>
+  </tr>
+ <tr>
+    <td>Correct!</td>
+    <td><%= form_for(:update, :url => update_score_path(@host)) do |f| %>
+    <%= f.hidden_field :name, :value => "team1" %>
+    <%= f.hidden_field :value, :value => @clue.value %>
+    <%= f.submit "+#{@clue.value}"  %>
+    <% end %></td>
+
+    <td><%= form_for(:update, :url => update_score_path(@host)) do |f| %>
+    <%= f.hidden_field :name, :value => "team2" %>
+    <%= f.hidden_field :value, :value => @clue.value %>
+    <%= f.submit "+#{@clue.value}"  %>
+    <% end %></td>
+
+    <td><%= form_for(:update, :url => update_score_path(@host)) do |f| %>
+    <%= f.hidden_field :name, :value => "team3" %>
+    <%= f.hidden_field :value, :value => @clue.value %>
+    <%= f.submit "+#{@clue.value}"  %>
+    <% end %></td>
+</tr>
+<tr>
+    <td>Incorrect!</td>
+    <td><%= form_for(:update, :url => update_score_path(@host)) do |f| %>
+    <%= f.hidden_field :name, :value => "team1" %>
+    <%= f.hidden_field :value, :value => (-1*@clue.value) %>
+    <%= f.submit "-#{@clue.value}"  %>
+    <% end %></td>
+    <td><%= form_for(:update, :url => update_score_path(@host)) do |f| %>
+    <%= f.hidden_field :name, :value => "team2" %>
+    <%= f.hidden_field :value, :value => (-1*@clue.value) %>
+    <%= f.submit "-#{@clue.value}"  %>
+    <% end %></td>
+    <td><%= form_for(:update, :url => update_score_path(@host)) do |f| %>
+    <%= f.hidden_field :name, :value => "team3" %>
+    <%= f.hidden_field :value, :value => (-1*@clue.value) %>
+    <%= f.submit "-#{@clue.value}"  %>
+    <% end %></td>
+</tr> 
+</table>
+
+<%= link_to 'Back to Round', round_path(session[:round]) %>

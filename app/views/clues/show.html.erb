@@ -1,0 +1,19 @@
+<h1><%=@clue.question%></h1>
+<h2><%=link_to "Answer", answer_clue_path(@clue) %> </h2>
+
+<table>
+  <tr>
+  	<th> Teams </th>
+    <th>Team 1</th>
+    <th>Team 2</th>
+    <th>Team 3</th>
+  </tr>
+  <tr>
+    <td>Winnings</td>
+    <td><%=@host.teams[0].winnings%></td>
+    <td><%=@host.teams[1].winnings%></td>
+    <td><%=@host.teams[2].winnings%></td>
+  </tr>
+  
+  
+</table>

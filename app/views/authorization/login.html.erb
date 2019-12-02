@@ -1,0 +1,12 @@
+<h1>Welcome to Jeopardy</h1>
+<%= form_for :login do |f| %>
+<%= f.label :username %>
+<%= f.text_field :username %>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<%= f.submit %>
+<% end %>
+<%= link_to "Make new host", "hosts/new" %>
+
+<h5>Copyright 2019. Trademarked. Patent Pending. Registered. FDA Approved. All Rights reserved.</h5>
+<h6>By Stanley Luong.</h6>
